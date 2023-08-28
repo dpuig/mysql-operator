@@ -1,0 +1,71 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.12.0
+  name: mysqlclusters.apps.dpuigerarde.com
+spec:
+  group: apps.dpuigerarde.com
+  names:
+    kind: MySQLCluster
+    listKind: MySQLClusterList
+    plural: mysqlclusters
+    singular: mysqlcluster
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: MySQLCluster is the Schema for the mysqlclusters API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: MySQLClusterSpec defines the desired state of MySQLCluster
+            properties:
+              deploymentName:
+                description: the name of the deployment
+                format: string
+                type: string
+              password:
+                format: string
+                type: string
+              replicas:
+                description: the number of replicas
+                format: int32
+                minimum: 0
+                type: integer
+              version:
+                type: string
+            required:
+            - deploymentName
+            - password
+            - replicas
+            - version
+            type: object
+          status:
+            description: MySQLClusterStatus defines the observed state of MySQLCluster
+            properties:
+              availableReplicas:
+                description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                  of cluster Important: Run "make" to regenerate code after modifying
+                  this file this is equal deployment.status.availableReplicas'
+                format: int32
+                type: integer
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

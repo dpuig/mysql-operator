@@ -1,0 +1,16 @@
+apiVersion: apps.dpuigerarde.com/v1alpha1
+kind: MySQLCluster
+metadata:
+  labels:
+    app.kubernetes.io/name: mysqlcluster
+    app.kubernetes.io/instance: mysqlcluster-sample
+    app.kubernetes.io/part-of: mysql-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: mysql-operator
+  name: mysqlcluster-sample
+spec:
+  # TODO(user): Add fields here
+  deploymentName: mysqlcluster-sample-deploy
+  replicas: 1
+  version: "5.6"
+  password: example
